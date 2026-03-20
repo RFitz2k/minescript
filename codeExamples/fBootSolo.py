@@ -1,5 +1,5 @@
 import minescript as ms
-import helperFunctions as hf
+import utils as hf
 import time
 from lib_sign import Sign
 import sys
