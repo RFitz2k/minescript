@@ -8,16 +8,12 @@ class General:
     def random_delay(self, time):
         "returns a random delay between a tenth and 1.5 times the provided time in seconds"
         return random.uniform(time*.1, time*1.5)
+    def write_out(f, data):
+        "abc"
+
+        
 
 class items:
-    def find_item(item): #returns the slot of the first instance of the item in the player's inventory, or prints that it was not found
-        if (slot := msp.Inventory.find_item(item)): #uses minescript_plus to find the item in the player's inventory, sets slot to the slot number if found
-            print("Found item in inventory in slot", slot) 
-            return slot
-        else:    
-            print("Item not found in inventory")
-            return False
-    
     def check_slot(slot): #checks the specified slot for an item and prints the item and its nbt data if found, or that no item was found if the slot is empty
         found = False #reset found to false before checking the slot
         inv = ms.player_inventory() #refresh inventory data, player_inventory() returns a stack of item objects with item, nbt, and slot attributes
@@ -29,7 +25,7 @@ class items:
         if not found:
             print("No item found in slot", slot)
         
-    def click_inv_remap(slot):
+    def base_inv_click_remap(slot):
 
         #msp.inventory.find_item returns:
         #Hotbar: Left right 0-8
@@ -59,4 +55,9 @@ class items:
         else:
             ms.echo("not a slot")
             return False
-        
+    def click_chest_remap(slot):
+        if slot < 9:
+            slot = slot + 81
+        else:
+            slot = slot + 45
+        return slot
